@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3000;
+const db = require("./models")
 const app = express();
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -18,6 +19,12 @@ app.get("/", (req, res) => {
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
-app.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
+
+require("./routes/html_routes")(app)
+require("./routes/trollo_routes")(app)
+
+db.sequelize.sync().then(function () {
+  app.listen(PORT, () => {
+    console.log(`🌎 ==> API server now on port ${PORT}!`);
+  })
 });
