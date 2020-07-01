@@ -1,1 +1,3 @@
-# project-3
+# Trollo App 
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
